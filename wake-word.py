@@ -5,45 +5,37 @@ import pvporcupine
 import pyttsx3
 from dotenv import load_dotenv
 from command_capture import get_command
-from ai_brain import get_ai_response
+from ai_brain import get_ai_response  # <--- This connects your Gemini brain
 
 # 1. Initialization
 load_dotenv()
 PICOVOICE_ACCESS_KEY = os.getenv("PICOVOICE_ACCESS_KEY")
-
-# Set the exact name of your .ppn file here
 KEYWORD_PATH = "Kyra-nova_en_windows_v4_0_0.ppn" 
 
-def kyra_responds():
-    """Triggered when the wake word is heard"""
-    """Re-initializes engine each time to fix the 'silent response' bug"""
-    print("\n✨ Kyra: Wake word detected!")
-    
-    # FRESH START: Create a new engine instance for THIS response
-    engine = pyttsx3.init() 
+def kyra_speaks(text):
+    """Makes Kyra speak any text using a fresh engine instance to avoid bugs"""
+    print(f"🤖 Kyra: {text}")
+    engine = pyttsx3.init()
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[1].id) # Microsoft Zira (Female)
     engine.setProperty('rate', 200)
     
-    engine.say("Yes? How can I assist you?")
-    engine.runAndWait() #
-    
-    # Properly shut down this engine instance
-    engine.stop() 
-    print("👂 Kyra: Listening for your command...")
+    engine.say(text)
+    engine.runAndWait()
+    engine.stop()
 
-# 2. Setup Porcupine with Custom Keyword
+# 2. Setup Porcupine Wake Word Engine
 try:
     porcupine = pvporcupine.create(
         access_key=PICOVOICE_ACCESS_KEY,
         keyword_paths=[KEYWORD_PATH],
-        sensitivities=[0.5] # Balanced sensitivity for your 397 noise floor
+        sensitivities=[0.5]
     )
 except Exception as e:
     print(f"Error initializing Porcupine: {e}")
     exit()
 
-# 3. Setup Audio Stream
+# 3. Setup Audio Stream for Wake Word
 pa = pyaudio.PyAudio()
 audio_stream = pa.open(
     rate=porcupine.sample_rate,
@@ -55,35 +47,41 @@ audio_stream = pa.open(
 
 print(f"👂 Kyra is standby. Say 'Kyra nova' to wake her up...")
 
-# 4. Main Loop
+# 4. Main Integrated Loop
 try:
     while True:
-        # Read audio chunk
+        # Listen for the wake word
         pcm = audio_stream.read(porcupine.frame_length)
         pcm = struct.unpack_from("h" * porcupine.frame_length, pcm)
-
-        # Process audio for wake word
         result = porcupine.process(pcm)
 
         if result >= 0:
-            # Step 2: Stop listening for wake word to free the mic
+            # STEP A: Stop the wake-word listener to free the microphone
             audio_stream.stop_stream()
 
-            # Step 3: Respond and Capture Command
-            kyra_responds()
-            user_text = get_command() # Calling Phase 2 Logic
-            # PHASE 2 WILL GO HERE: Transcription logic
-
-            print(f"💬 Kyra Understood: '{user_text}'")
+            # STEP B: Acknowledge the user
+            kyra_speaks("Yes? How can I assist you?")
             
-            # Step 4: Resume Standby
+            # STEP C: Record and Transcribe the user's command (Whisper)
+            user_text = get_command() 
+            print(f"💬 You said: '{user_text}'")
+
+            if user_text:
+                # STEP D: Get a smart response from Gemini (Brain)
+                print("🧠 Thinking...")
+                ai_answer = get_ai_response(user_text)
+                
+                # STEP E: Kyra speaks the smart answer back
+                kyra_speaks(ai_answer)
+            
+            # STEP F: Restart the wake-word listener
             audio_stream.start_stream()
             print("\n👂 Returning to standby...")
             
 except KeyboardInterrupt:
     print("\nStopping Kyra...")
 finally:
-    # 5. Resource Cleanup
+    # Cleanup
     audio_stream.close()
     pa.terminate()
     porcupine.delete()
