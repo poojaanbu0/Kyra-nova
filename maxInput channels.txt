@@ -1,0 +1,125 @@
+maxInput channels
+
+maxoutput channels
+
+default sample rate
+
+--- Detected Audio Devices ---
+Total devices found: 21
+
+ID 0: Microsoft Sound Mapper - Input
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 1: Microphone Array (3- IntelÂ® Sma
+   - Type: INPUT (Microphone)
+   - Channels: 4 in / 0 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 2: Microsoft Sound Mapper - Output
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 3: Speaker (3- Realtek(R) Audio)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 4: Primary Sound Capture Driver
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 5: Microphone Array (3- IntelÂ® Smart Sound Technology for Digital Microphones)
+   - Type: INPUT (Microphone)
+   - Channels: 4 in / 0 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 6: Primary Sound Driver
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 7: Speaker (3- Realtek(R) Audio)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 8: Speaker (3- Realtek(R) Audio)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 9: Microphone Array (3- IntelÂ® Smart Sound Technology for Digital Microphones)
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 10: Stereo Mix (Realtek HD Audio Stereo input)
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 11: Microphone (Realtek HD Audio Mic input)
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 12: Speakers 1 (Realtek HD Audio output with SST)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 13: Speakers 2 (Realtek HD Audio output with SST)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 14: PC Speaker (Realtek HD Audio output with SST)
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 15: Headphones 1 (Realtek HD Audio 2nd output with SST)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 16: Headphones 2 (Realtek HD Audio 2nd output with SST)
+   - Type: OUTPUT (Speaker)
+   - Channels: 0 in / 2 out
+   - Default Sample Rate: 44100.0 Hz
+------------------------------
+ID 17: PC Speaker (Realtek HD Audio 2nd output with SST)
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 18: Microphone Array 1 ()
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 19: Microphone Array 2 ()
+   - Type: INPUT (Microphone)
+   - Channels: 2 in / 0 out
+   - Default Sample Rate: 48000.0 Hz
+------------------------------
+ID 20: Microphone Array 3 ()
+   - Type: INPUT (Microphone)
+   - Channels: 4 in / 0 out
+   - Default Sample Rate: 16000.0 Hz
+------------------------------
+Default Input Device: ID 1 - Microphone Array (3- IntelÂ® Sma
+Default Output Device: ID 3 - Speaker (3- Realtek(R) Audio)
+
+////////
+Ambient Noise Test: Stay silent for 10 seconds...
+Reading background levels...
+Current Level: 2345
+
+✅ Baseline Test Complete!
+Your maximum background noise level is: 2246
+Recommendation: High background noise! You'll need lower sensitivity.
